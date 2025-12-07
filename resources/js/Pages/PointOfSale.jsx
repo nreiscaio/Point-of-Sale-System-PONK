@@ -1,12 +1,12 @@
-import CodigoOrDesconto from '@/Components/CodigoOrDesconto';
-import ConfirmarCancelamentoPopUp from '@/Components/ConfirmarCancelamentoPopUp';
-import PinGerentePopUp from '@/Components/PinGerentePopUp';
-import QuantidadePopUp from '@/Components/QuantidadePopUp';
-import RemoverItemPopUp from '@/Components/RemoverItemPopUp';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, router } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import '../../css/PointOfSale.css';
+import CodigoOrDesconto from '@/Components/CodigoOrDesconto';
+import QuantidadePopUp from '@/Components/QuantidadePopUp';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import PinGerentePopUp from '@/Components/PinGerentePopUp';
+import RemoverItemPopUp from '@/Components/RemoverItemPopUp';
+import ConfirmarCancelamentoPopUp from '@/Components/ConfirmarCancelamentoPopUp';
 import ValorDisplay from '@/Components/ValorDisplay';
 import TotalItemDisplay from '@/Components/TotalItemDisplay';
 import Atalhos from '@/Components/Atalhos';
