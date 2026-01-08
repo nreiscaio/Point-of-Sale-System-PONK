@@ -50,6 +50,7 @@ export default function Login({ status, errors: pageErrors }) {
                             <input
                                 type="email"
                                 className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                                data-testid="login-email"
                                 id="email"
                                 name="email"
                                 value={data.email}
@@ -73,6 +74,7 @@ export default function Login({ status, errors: pageErrors }) {
                             <input
                                 type="password"
                                 className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                data-testid="login-password"
                                 id="password"
                                 name="password"
                                 value={data.password}
@@ -108,6 +110,7 @@ export default function Login({ status, errors: pageErrors }) {
                         </div>
 
                         <button
+                            data-testid="login-submit"
                             type="submit"
                             className="btn btn-primary mt-2 px-5"
                             disabled={processing}

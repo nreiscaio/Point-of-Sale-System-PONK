@@ -125,10 +125,10 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
     if (!caixa_status || caixa_status !== 'Aberto') {
         return (
             <div style={{
-                display: 'flex', 
-                flexDirection: 'column', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
                 height: '100vh',
                 backgroundImage: 'url(/img/background.png)',
                 backgroundSize: 'cover',
@@ -155,7 +155,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                     }}>
                         🔒
                     </div>
-                    
+
                     {/* Título */}
                     <h2 style={{
                         fontSize: '28px',
@@ -165,7 +165,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                     }}>
                         Caixa Fechado
                     </h2>
-                    
+
                     {/* Mensagem */}
                     <p style={{
                         fontSize: '16px',
@@ -176,7 +176,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                         O caixa não está disponível no momento.<br />
                         Por favor, abra um caixa para continuar.
                     </p>
-                    
+
                     {/* Contador */}
                     <div style={{
                         background: 'rgba(255, 255, 255, 0.1)',
@@ -341,20 +341,20 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
         }
     }, [valorTotal, formaPagamento]);
 
-    
+
     useEffect(() => {
         const handleKeyDown = (event) => {
             // Permite Enter apenas em contextos específicos (modais abertos)
             if (event.key === 'Enter') {
                 // Se algum modal estiver aberto, permite que o Enter funcione
-                const modalAberto = showQuantidadePopUp || 
-                                  showPinGerentePopUp || 
-                                  showRemoverItemPopUp || 
-                                  showConfirmarCancelamentoPopUp || 
-                                  showInserirCPF || 
-                                  showInserirValor || 
-                                  showFinalizarVenda;
-                
+                const modalAberto = showQuantidadePopUp ||
+                    showPinGerentePopUp ||
+                    showRemoverItemPopUp ||
+                    showConfirmarCancelamentoPopUp ||
+                    showInserirCPF ||
+                    showInserirValor ||
+                    showFinalizarVenda;
+
                 if (!modalAberto) {
                     event.preventDefault();
                     return; // Bloqueia Enter apenas quando nenhum modal está aberto
@@ -448,17 +448,17 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
 
         document.addEventListener('keydown', handleKeyDown);
         return () => document.removeEventListener('keydown', handleKeyDown); // limpeza
-    }, [screenState, itens, valorTotal, valorRecebido, formaPagamento, 
-        showQuantidadePopUp, showPinGerentePopUp, showRemoverItemPopUp, 
-        showConfirmarCancelamentoPopUp, showInserirCPF, showInserirValor, showFinalizarVenda]);    
-    
+    }, [screenState, itens, valorTotal, valorRecebido, formaPagamento,
+        showQuantidadePopUp, showPinGerentePopUp, showRemoverItemPopUp,
+        showConfirmarCancelamentoPopUp, showInserirCPF, showInserirValor, showFinalizarVenda]);
+
     if (loadingVenda) {
         return (
             <div style={{
-                display: 'flex', 
+                display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center', 
-                alignItems: 'center', 
+                justifyContent: 'center',
+                alignItems: 'center',
                 height: '100vh',
                 backgroundColor: '#f8f9fa',
                 color: '#333'
@@ -473,7 +473,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                     animation: 'spin 1s linear infinite',
                     marginBottom: '20px'
                 }}></div>
-                
+
                 {/* Texto */}
                 <p style={{
                     fontSize: '16px',
@@ -553,7 +553,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                         console.error('Erro ao alterar quantidade:', data);
                         alert(
                             data.message ||
-                                'Erro ao alterar quantidade. Verifique se o código está correto.',
+                            'Erro ao alterar quantidade. Verifique se o código está correto.',
                         );
                     }
                 })
@@ -575,7 +575,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
     const handlePinConfirm = async (pin) => {
         console.log('PIN digitado:', pin);
         console.log('Objetivo do PIN:', objetivoPin);
-        
+
         try {
             const response = await fetch(
                 `/pointOfSale/acoes/validar-gerente?pin=${encodeURIComponent(pin)}`,
@@ -594,7 +594,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                 console.log('Pin verificado com sucesso');
                 setPinRecebido(pin); // Define o PIN ANTES de fechar o modal
                 setShowPinGerentePopUp(false);
-                
+
                 if (objetivoPin === 'removerItem') {
                     setShowRemoverItemPopUp(true);
                 }
@@ -644,24 +644,24 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
     const handleRemoverItemCancel = () => {
         setShowRemoverItemPopUp(false);
     };
-    
+
     const cancelarVendaComPin = (pin) => {
         console.log('Cancelando venda com PIN direto:', pin);
         console.log('Venda atual completa:', vendaAtual);
         console.log('ID da venda:', vendaAtual?.id);
         console.log('Tipo do ID:', typeof vendaAtual?.id);
-        
+
         // Previne múltiplas submissões
         if (loadingCancelamento) {
             console.log('Cancelamento já em progresso, ignorando nova tentativa');
             return;
         }
-        
+
         if (!pin) {
             alert('PIN do gerente é obrigatório para cancelar a venda.');
             return;
         }
-        
+
         if (!vendaAtual || !vendaAtual.id) {
             alert('Nenhuma venda ativa encontrada para cancelar.');
             return;
@@ -676,7 +676,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
             onSuccess: (page) => {
                 console.log('Venda cancelada com sucesso');
                 setShowConfirmarCancelamentoPopUp(false);
-                setPinRecebido(''); 
+                setPinRecebido('');
                 setLoadingCancelamento(false);
                 // O redirect para dashboard será automático pelo Inertia
             },
@@ -725,25 +725,25 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                 cpf_cliente: cpf || null // Envia null se CPF estiver vazio
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('CPF do cliente atualizado com sucesso:', cpf);
-                setShowInserirCPF(false);
-                if (cpf) {
-                    alert(`CPF ${cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')} adicionado à venda.`);
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('CPF do cliente atualizado com sucesso:', cpf);
+                    setShowInserirCPF(false);
+                    if (cpf) {
+                        alert(`CPF ${cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')} adicionado à venda.`);
+                    } else {
+                        alert('Venda configurada sem CPF.');
+                    }
                 } else {
-                    alert('Venda configurada sem CPF.');
+                    console.error('Erro ao atualizar CPF do cliente:', data);
+                    alert(data.message || 'Erro ao atualizar CPF do cliente.');
                 }
-            } else {
-                console.error('Erro ao atualizar CPF do cliente:', data);
-                alert(data.message || 'Erro ao atualizar CPF do cliente.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar CPF do cliente:', error);
-            alert('Erro ao atualizar CPF do cliente. Tente novamente.');
-        });
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar CPF do cliente:', error);
+                alert('Erro ao atualizar CPF do cliente. Tente novamente.');
+            });
     };
 
     const handleCPFCancel = () => {
@@ -754,7 +754,7 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
     const handleValorConfirm = (valor) => {
         setValorRecebido(valor);
         setShowInserirValor(false);
-        
+
         // Aqui você pode adicionar lógica adicional se necessário
         console.log('Valor recebido registrado:', valor);
     };
@@ -852,19 +852,19 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                 forma_pagamento: novaFormaPagamento
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Forma de pagamento atualizada com sucesso:', novaFormaPagamento);
-            } else {
-                console.error('Erro ao atualizar forma de pagamento:', data);
-                alert(data.message || 'Erro ao atualizar forma de pagamento.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar forma de pagamento:', error);
-            alert('Erro ao atualizar forma de pagamento. Tente novamente.');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Forma de pagamento atualizada com sucesso:', novaFormaPagamento);
+                } else {
+                    console.error('Erro ao atualizar forma de pagamento:', data);
+                    alert(data.message || 'Erro ao atualizar forma de pagamento.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar forma de pagamento:', error);
+                alert('Erro ao atualizar forma de pagamento. Tente novamente.');
+            });
     };
 
     return (
@@ -903,12 +903,12 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
 
                             <Atalhos screenState={screenState} />
                         </div>
-                        
+
 
                         {/* Coluna principal */}
                         <div className="coluna-principal">
                             <div className="carrinho-wrapper">
-                                <table className="carrinho">
+                                <table className="carrinho" data-testid="tabela-itens-venda">
                                     <thead>
                                         <tr>
                                             <th>Nº</th>
@@ -921,13 +921,15 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                                     </thead>
                                     <tbody>
                                         {itensComDados.length > 0 ? itensComDados.map((itemData, idx) => (
-                                            <tr key={itemData.id_item || idx}>
+                                            <tr key={itemData.id_item || idx}
+                                                data-testid="linha-item"
+                                                data-item-id={itemData.id_item}>
                                                 <td>{itemData.index}</td>
-                                                <td>{itemData.produto_id || 'N/A'}</td>
+                                                <td data-testid="item-codigo">{itemData.produto_id || 'N/A'}</td>
                                                 <td>{itemData.produto?.nome || 'Produto não encontrado'}</td>
-                                                <td>{itemData.quantidadeFormatada || '0'}</td>
-                                                <td>{itemData.valorUnitarioFormatado || 'R$ 0,00'}</td>
-                                                <td>{itemData.totalFormatado || 'R$ 0,00'}</td>
+                                                <td data-testid="item-quantidade">{itemData.quantidadeFormatada || '0'}</td>
+                                                <td data-testid="item-valor-unitario">{itemData.valorUnitarioFormatado || 'R$ 0,00'}</td>
+                                                <td data-testid="item-total">{itemData.totalFormatado || 'R$ 0,00'}</td>
                                             </tr>
                                         )) : (
                                             <tr>

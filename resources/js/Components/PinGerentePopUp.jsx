@@ -50,11 +50,12 @@ export default function PinGerentePopUp({
     if (!aparecendo) return null;
 
     return (
-        <div className="pin-gerente-popup-overlay">
+        <div className="pin-gerente-popup-overlay" data-testid="pin-gerente-popup">
             <div className="pin-gerente-popup-container">
                 <h2 className="pin-gerente-popup-title">{titulo}</h2>
 
                 <input
+                    data-testid="pin-gerente-popup-input"
                     ref={inputRef}
                     className="pin-gerente-popup-input"
                     value={pin}
@@ -72,6 +73,7 @@ export default function PinGerentePopUp({
                         Cancelar (ESC)
                     </button>
                     <button
+                        data-testid="pin-gerente-confirm"
                         className="pin-gerente-popup-button pin-gerente-popup-button-confirm"
                         onClick={handleConfirm}
                         disabled={!pin.trim()}

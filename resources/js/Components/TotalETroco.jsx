@@ -32,7 +32,7 @@ export default function TotalETroco({ screenState, valorTotal, valorPago }) {
         // Tela de pagamento - mostra valor total e troco como dois cartões separados
         return (
             <div className="total-troco-wrapper">
-                <div className="cartao-total cartao-troco">
+                <div className="cartao-total cartao-troco" data-testid="cartao-troco">
                     <div className="rotulo">
                         <h2>Troco</h2>
                     </div>
@@ -41,7 +41,7 @@ export default function TotalETroco({ screenState, valorTotal, valorPago }) {
                     </div>
                 </div>
 
-                <div className="cartao-total">
+                <div className="cartao-total" data-testid="cartao-total">
                     <div className="rotulo">
                         <h2>Valor total</h2>
                     </div>

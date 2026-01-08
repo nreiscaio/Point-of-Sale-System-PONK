@@ -60,6 +60,7 @@ export default function TotalItemDisplay({ screenState, totalUltimoItem, onForma
                     <select 
                         value={formaPagamentoLocal}
                         onChange={handleFormaPagamentoChange}
+                        data-testid="forma-pagamento-select"
                         id='forma-pagamento-select'
                         className="forma-pagamento-select"
                     >

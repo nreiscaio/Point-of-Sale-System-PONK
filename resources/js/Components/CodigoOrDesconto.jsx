@@ -251,6 +251,7 @@ export default function CodigoOrDesconto({ state, vendaAtual, recarregaItensAdic
                     <div className="titulo-cartao">Código do produto</div>
                         <div className="cartao-input-wrapper">
                             <input
+                                data-testid="input-codigo-produto"
                                 id="input-codigo-produto"
                                 placeholder={placeholderText}
                                 value={codigo}
@@ -291,6 +292,7 @@ export default function CodigoOrDesconto({ state, vendaAtual, recarregaItensAdic
                     <div className="titulo-cartao">Desconto</div>
                         <div className="cartao-input-wrapper">
                             <input
+                                data-testid="input-desconto"
                                 id="input-desconto"
                                 placeholder={loading ? "Aplicando desconto..." : "F1 - Insira o desconto desejado..."}
                                 value={desconto}

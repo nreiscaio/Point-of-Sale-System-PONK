@@ -58,13 +58,14 @@ export default function InserirValorPopUp({ aparecendo, aoConfirmar, aoFechar, t
     if (!aparecendo) return null;
 
     return (
-        <div className="valor-popup-overlay">
+        <div className="valor-popup-overlay" data-testid="inserir-valor-popup">
             <div className="valor-popup-container">
                 <h2 className="valor-popup-title">{titulo || 'Inserir Valor Recebido'}</h2>
                 
                 <div className="valor-input-group">
                     <label htmlFor="valor-input">Valor recebido:</label>
                     <input
+                        data-testid="inserir-valor-input"
                         id="valor-input"
                         type="text"
                         value={valor}
@@ -85,6 +86,7 @@ export default function InserirValorPopUp({ aparecendo, aoConfirmar, aoFechar, t
                         Cancelar
                     </button>
                     <button 
+                        data-testid="inserir-valor-confirm"
                         className="valor-popup-button valor-popup-button-confirm"
                         onClick={handleConfirmar}
                     >

@@ -40,7 +40,9 @@ const FinalizarVendaPopUp = ({ aparecendo, aoConfirmar, aoFechar, titulo, valorT
     }, [aparecendo, aoConfirmar, aoFechar]);
 
     return (
-        <div className="finalizar-venda-popup-overlay">
+        <div className="finalizar-venda-popup-overlay"
+            data-testid="finalizar-venda-popup"
+            >
             <div className="finalizar-venda-popup-container">
                 <h2 className="finalizar-venda-popup-title">
                     {titulo || 'Finalizar Venda'}
@@ -49,17 +51,17 @@ const FinalizarVendaPopUp = ({ aparecendo, aoConfirmar, aoFechar, titulo, valorT
                 <div className="finalizar-venda-resumo">
                     <div className="resumo-item">
                         <span className="resumo-label">Valor Total:</span>
-                        <span className="resumo-valor">{formatarMoeda(valorTotal)}</span>
+                        <span className="resumo-valor" data-testid="finalizar-venda-valor-total">{formatarMoeda(valorTotal)}</span>
                     </div>
                     
                     <div className="resumo-item">
                         <span className="resumo-label">Valor Recebido:</span>
-                        <span className="resumo-valor">{formatarMoeda(valorRecebido)}</span>
+                        <span className="resumo-valor" data-testid="finalizar-venda-valor-recebido">{formatarMoeda(valorRecebido)}</span>
                     </div>
                     
                     <div className="resumo-item destaque">
                         <span className="resumo-label">Troco:</span>
-                        <span className="resumo-valor troco">{formatarMoeda(troco)}</span>
+                        <span className="resumo-valor troco" data-testid="finalizar-venda-troco">{formatarMoeda(troco)}</span>
                     </div>
                 </div>
 
@@ -76,6 +78,7 @@ const FinalizarVendaPopUp = ({ aparecendo, aoConfirmar, aoFechar, titulo, valorT
                         Cancelar (ESC)
                     </button>
                     <button 
+                        data-testid="finalizar-venda-confirm"
                         className="finalizar-venda-popup-button finalizar-venda-popup-button-confirm"
                         onClick={handleConfirmar}
                         type="button"

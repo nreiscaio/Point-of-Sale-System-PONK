@@ -142,7 +142,7 @@ export default function StatusCaixa({
                                     Status do Caixa
                                 </div>
 
-                                <div className="status-valor-status">
+                                <div data-testid="status-caixa" className="status-valor-status">
                                     <h2>{aberto ? 'ABERTO' : 'FECHADO'}</h2>
                                 </div>
 
@@ -175,15 +175,15 @@ export default function StatusCaixa({
 
                             <div className="status-cartao-atalhos">
                                 <ul>
-                                    <li>F1 – Voltar ao Menu</li>
+                                    <li data-testid="voltar-menu">F1 – Voltar ao Menu</li>
 
-                                    <li>F2 – Abrir caixa</li>
+                                    <li data-testid="abrir-caixa">F2 – Abrir caixa</li>
 
-                                    <li>F3 – Gerar relatório PDF</li>
+                                    <li data-testid="gerar-relatorio">F3 – Gerar relatório PDF</li>
 
-                                    <li>F5 – Atualizar</li>
+                                    <li data-testid="atualizar">F5 – Atualizar</li>
 
-                                    <li>F6 – Fechar caixa</li>
+                                    <li data-testid="fechar-caixa">F6 – Fechar caixa</li>
                                 </ul>
                             </div>
                         </div>
@@ -192,7 +192,7 @@ export default function StatusCaixa({
 
                         <div className="status-coluna-principal">
                             <div className="status-mov-wrapper">
-                                <table className="status-mov">
+                                <table data-testid="tabela-mov" className="status-mov">
                                     <thead>
                                         <tr>
                                             <th>Data e Hora</th>
@@ -213,7 +213,11 @@ export default function StatusCaixa({
 
                                     <tbody>
                                         {vendas.map((venda) => (
-                                            <tr key={venda.id}>
+                                            <tr
+                                                data-testid="linha-venda"
+                                                data-venda-id={venda.id}
+                                                key={venda.id}
+                                            >
                                                 <td>
                                                     {new Date(
                                                         venda.created_at,
@@ -232,28 +236,28 @@ export default function StatusCaixa({
 
                                                 <td>
                                                     {venda.forma_pagamento ===
-                                                    'dinheiro'
+                                                        'dinheiro'
                                                         ? 'Sim'
                                                         : 'Não'}
                                                 </td>
 
                                                 <td>
                                                     {venda.forma_pagamento ===
-                                                    'cartao_credito'
+                                                        'cartao_credito'
                                                         ? 'Sim'
                                                         : 'Não'}
                                                 </td>
 
                                                 <td>
                                                     {venda.forma_pagamento ===
-                                                    'cartao_debito'
+                                                        'cartao_debito'
                                                         ? 'Sim'
                                                         : 'Não'}
                                                 </td>
 
                                                 <td>
                                                     {venda.forma_pagamento ===
-                                                    'pix'
+                                                        'pix'
                                                         ? 'Sim'
                                                         : 'Não'}
                                                 </td>

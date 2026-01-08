@@ -50,6 +50,7 @@ export default function Dashboard() {
         <AuthenticatedLayout>
             <div className="main-container">
                 <div
+                    data-testid="menu-pos"
                     className="menu-card"
                     onClick={() => handleMenuClick('pos')}
                 >
@@ -61,6 +62,7 @@ export default function Dashboard() {
                 </div>
 
                 <div
+                    data-testid="menu-status"
                     className="menu-card"
                     onClick={() => handleMenuClick('status')}
                 >
@@ -73,6 +75,7 @@ export default function Dashboard() {
 
                 {user?.admin && (
                     <div 
+                        data-testid="menu-register"
                         className="menu-card"
                         id="admin-register"
                         onClick={() => handleMenuClick('register')}
