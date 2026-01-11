@@ -43,5 +43,5 @@ test('venda simples em dinheiro apenas com teclado', async ({ page }) => {
   await page.waitForTimeout(2000);
 
   // sucesso
-  await expect(page.getByTestId('menu-pos')).toBeVisible();
+  await expect(page.getByTestId('linha-item')).toHaveCount(0);
 });
