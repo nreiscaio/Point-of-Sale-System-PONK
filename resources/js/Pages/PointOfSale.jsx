@@ -820,6 +820,8 @@ export default function PointOfSale({ user, caixa_id, caixa_status, vendas }) {
                 setShowFinalizarVenda(false);
             }
         });
+    
+        window.location.reload();
     };
 
     const handleFinalizarVendaCancel = () => {
