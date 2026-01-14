@@ -44,4 +44,22 @@ class VendaIntegrationTest extends TestCase
 
         $response->assertStatus(302);
     }
+
+    public function test_venda_com_dados_invalidos_eh_rejeitada()
+    {
+        $user = User::factory()->create();
+
+        $dadosInvalidos = [
+            'forma_pagamento' => 'Dinheiro',
+            'valor_total' => 100.00,
+            'status' => 'StatusInexistente',
+            'caixa_id' => 1,
+        ];
+
+        $response = $this->actingAs($user)
+                         ->post(route('vendas.store'), $dadosInvalidos);
+
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors(['status']); 
+    }
 }

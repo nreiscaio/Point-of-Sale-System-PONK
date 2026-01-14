@@ -23,7 +23,7 @@ class ProdutoTest extends TestCase
         $this->expectException(ValidationException::class);
         
         $produto = new Produto();
-        $produto->codigo = '123'; // Inválido
+        $produto->codigo = '123';
     }
 
     public function test_valor_unitario_deve_ser_numerico()
